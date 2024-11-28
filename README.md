@@ -5,4 +5,10 @@ A idéia inicial é criar MVPs ao longo do tempo e mostrar a evolução de um pr
 
 # MVP1
 
-**RF01** - O sistema deverá ter os seguintes dados: Número do Ticket, Número da Placa do Veículo, Modelo e Cor do Veículo, Hora de Entrada, Hora de saída
+**RF01** - O sistema deverá fornecer o número do ticket;
+**RF02** - O sitema deverá guardar o número da placa do veículo;
+**RF03** - O sistema deverá guardar o modelo e a cor do veículo;
+**RF04** - O sistema deverá guardar a Hora de Entrada do veículo;
+**RF05** - O sistema deverá guardar a hora de saída do veículo;
+**RF06** - O sistema deverá calcular o valor de cobrança no fechamento do ticket;
+**RF07** - O sistema deverá guardar o valor pago.
