@@ -12,3 +12,5 @@ A idéia inicial é criar MVPs ao longo do tempo e mostrar a evolução de um pr
 - **RF05** - O sistema deverá guardar a hora de saída do veículo
 - **RF06** - O sistema deverá calcular o valor de cobrança no fechamento do ticket
 - **RF07** - O sistema deverá guardar o valor pago
+
+[Tela Principal] (https://github.com/AndersonACampos/Parking/blob/main/Documents/Tela%20Principal.PNG)
