@@ -14,7 +14,9 @@ A idéia inicial é criar MVPs ao longo do tempo e mostrar a evolução de um pr
 - **RF07** - O sistema deverá guardar o valor pago
 
 <b>Tela principal do sistema</b>
+<br>
 <img src="https://github.com/AndersonACampos/Parking/blob/main/Documents/Tela%20Principal.PNG" alt="Tela Principal">
 
 <b>Tela de pagamento</b>
+<br>
 <img src="https://github.com/AndersonACampos/Parking/blob/main/Documents/Tela%20de%20Pagamento.PNG" alt="Tela Pagamento">
