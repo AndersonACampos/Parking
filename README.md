@@ -13,4 +13,8 @@ A idéia inicial é criar MVPs ao longo do tempo e mostrar a evolução de um pr
 - **RF06** - O sistema deverá calcular o valor de cobrança no fechamento do ticket
 - **RF07** - O sistema deverá guardar o valor pago
 
+<b>Tela principal do sistema</b>
 <img src="https://github.com/AndersonACampos/Parking/blob/main/Documents/Tela%20Principal.PNG" alt="Tela Principal">
+
+<b>Tela de pagamento</b>
+<img src="https://github.com/AndersonACampos/Parking/blob/main/Documents/Tela%20de%20Pagamento.PNG" alt="Tela Pagamento">
