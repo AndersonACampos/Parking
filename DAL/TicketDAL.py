@@ -26,3 +26,16 @@ def pagar(id, saida, tempo, valor):
     con.commit()
     con.close()
     return True
+
+
+def cadastrar(placa, carro, cor):
+    con = sqlite3.connect(PATH_DB)
+    cur = con.cursor()
+    # Usando placeholders para prevenir injeção de SQL
+    cur.execute(
+        "INSERT INTO ticket (placa, carro, cor) values(?,?,?)",
+        (placa, carro, cor)
+    )
+    con.commit()
+    con.close()
+    return True

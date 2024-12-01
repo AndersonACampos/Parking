@@ -8,6 +8,17 @@ from datetime import datetime
 import math
 
 
+def cadastrar(placa, carro, cor):
+    if placa == '':
+        raise NameError('A placa é obrigatória')
+    if carro == '':
+        raise NameError('A carro é obrigatório')
+    if cor == '':
+        raise NameError('A cor é obrigatória')
+    
+    td.cadastrar(placa, carro, cor)
+        
+
 def buscar_todos():
     ticket, colunas = td.buscar_todos();
     if len(ticket) == 0:
@@ -24,38 +35,24 @@ def pagar(id, saida, tempo, valor):
         raise NameError("Ocorreu um erro ao pagar")
     
 
-def calcula_tempo(entrada, saida):    
-
-    # Definir os horários como objetos datetime
+def calcula_tempo(entrada, saida):
     hora_inicial = datetime.strptime(entrada, "%d/%m/%Y %H:%M:%S")
     hora_final = datetime.strptime(saida, "%d/%m/%Y %H:%M:%S")
-
-    # Calcular a diferença entre os horários
     diferenca = hora_final - hora_inicial
-
-    # Converter a diferença para minutos
     diferenca_em_minutos = diferenca.total_seconds() / 60
-
     return math.ceil(diferenca_em_minutos)
 
 
 def calcular_valor_pagar(entrada_em_minutos):
-    # Regra 1: Se o tempo for até 30 minutos, o valor é R$ 10
     if entrada_em_minutos <= 30:
         return 10
-    
-    # Regra 2: Se o tempo for até 1 hora (60 minutos), o valor é R$ 20
     elif entrada_em_minutos <= 60:
         return 30
-    
     minutos_restantes = entrada_em_minutos - 60
-
-    # Regra 3: Para horas além de 1 hora, calcula R$ 10 por hora (arredondando para cima)
     valor_total = 30
     if minutos_restantes > 0:
         horas = math.ceil(minutos_restantes / 60)
-        valor_total += horas * 10  # R$ 10 por hora, arredondando para cima
-
+        valor_total += horas * 10
     return valor_total
 
 

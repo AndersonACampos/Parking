@@ -50,5 +50,7 @@ while True:
         
     if event == 'cmdCadastrar':
         Ticket.cadastrar()
+        ticket, colunas = carrega_ticket()
+        window['grdTickets'].update(values=ticket)
              
 window.close()

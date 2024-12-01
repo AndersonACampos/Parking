@@ -1,4 +1,9 @@
+import sys
+import os
 import PySimpleGUI as sg
+# Adiciona o diretório pai ao caminho de importação
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import BLL.TicketBLL as tb
 
 def cadastrar():
     coluna_esquerda = [
@@ -25,4 +30,14 @@ def cadastrar():
         events, values = window.read()
         if events in(sg.WIN_CLOSED, 'Sair'):
             break
+        if events == 'Cadastrar':
+            placa = values['txtPlaca']
+            carro = values['txtCarro']
+            cor = values['txtCor']
+            try:
+                tb.cadastrar(placa, carro, cor)
+                break
+            except Exception as ex:
+                sg.popup_error(ex)
+            
     window.close()
