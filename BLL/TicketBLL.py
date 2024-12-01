@@ -7,11 +7,21 @@ import DAL.TicketDAL as td
 from datetime import datetime
 import math
 
+
 def buscar_todos():
     ticket, colunas = td.buscar_todos();
     if len(ticket) == 0:
         raise NameError('Nenhum registro encontrado')
     return ticket, colunas
+
+
+def pagar(id, saida, tempo, valor):
+    ret = td.pagar(id, saida, tempo, valor)
+    if ret:
+        return True
+    else:
+        raise NameError("Ocorreu um erro ao pagar")
+    
 
 def calcula_tempo(entrada, saida):    
 
@@ -26,8 +36,6 @@ def calcula_tempo(entrada, saida):
     diferenca_em_minutos = diferenca.total_seconds() / 60
 
     return math.ceil(diferenca_em_minutos)
-
-
 
 
 def calcular_valor_pagar(entrada_em_minutos):

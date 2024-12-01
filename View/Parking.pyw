@@ -7,12 +7,14 @@ import BLL.TicketBLL as tb
 import time
 import Ticket
 
+sg.theme('TanBlue')
+
 try:
     ticket, colunas = tb.buscar_todos();
-except Exception as ex:
-    sg.popup_error(ex)
+except Exception as ex:    
+    sg.popup_error(f'{ex} - {ex.args}')
 
-sg.theme('TanBlue')
+
 
 layout = [
     [sg.Table(ticket, 
