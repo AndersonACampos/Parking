@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 # Adiciona o diretório pai ao caminho de importação
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import BLL.TicketBLL as tb
-import time
+import Pagamento
 import Ticket
 
 sg.theme('TanBlue')
@@ -29,9 +29,7 @@ layout = [
               key='grdTickets'
               )],
     
-    [sg.Button("Fechar", 
-               key='cmdFechar'
-               )]
+    [sg.Button("Fechar", key='cmdFechar'), sg.Button("Cadastrar", key='cmdCadastrar')]
 ]
 
 window = sg.Window("Park v1.0", layout)
@@ -44,10 +42,13 @@ while True:
     if event == 'grdTickets':
         try:
             linha = values['grdTickets'][0]
-            Ticket.fechar_conta(ticket[linha])
+            Pagamento.fechar_conta(ticket[linha])
         except:
             pass
         ticket, colunas = carrega_ticket()
-        window['grdTickets'].update(values=ticket)   
+        window['grdTickets'].update(values=ticket)
+        
+    if event == 'cmdCadastrar':
+        Ticket.cadastrar()
              
 window.close()
