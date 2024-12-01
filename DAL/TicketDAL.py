@@ -18,19 +18,11 @@ def buscar_todos():
 def pagar(id, saida, tempo, valor):
     con = sqlite3.connect(PATH_DB)
     cur = con.cursor()
-    query = f"""
-                update 
-                    ticket
-                set 
-                    saida = {saida},
-                    valor = {valor},
-                    tempo = {tempo},
-                    pago = 1
-                where 
-                    id = {id}
-            """
-    cur.execute(query)
+    # Usando placeholders para prevenir injeção de SQL
+    cur.execute(
+        "UPDATE ticket SET saida = ?, valor = ?, tempo = ?, pago = 1 WHERE ticket_id = ?",
+        (saida, valor, tempo, id)
+    )
     con.commit()
-    ret = cur.fetchone()
     con.close()
-    return ret
+    return True

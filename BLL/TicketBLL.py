@@ -16,6 +16,7 @@ def buscar_todos():
 
 
 def pagar(id, saida, tempo, valor):
+
     ret = td.pagar(id, saida, tempo, valor)
     if ret:
         return True

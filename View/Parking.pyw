@@ -9,12 +9,14 @@ import Ticket
 
 sg.theme('TanBlue')
 
-try:
-    ticket, colunas = tb.buscar_todos();
-except Exception as ex:    
-    sg.popup_error(f'{ex} - {ex.args}')
+def carrega_ticket():
+    try:
+        ticket, colunas = tb.buscar_todos();
+        return ticket, colunas
+    except Exception as ex:    
+        sg.popup_error(f'{ex} - {ex.args}')
 
-
+ticket, colunas = carrega_ticket()
 
 layout = [
     [sg.Table(ticket, 
@@ -38,7 +40,14 @@ while True:
     event, values = window.read()
     if event in (sg.WINDOW_CLOSED,"cmdFechar") :
         break
+    
     if event == 'grdTickets':
-        linha = values['grdTickets'][0]
-        Ticket.fechar_conta(ticket[linha])        
+        try:
+            linha = values['grdTickets'][0]
+            Ticket.fechar_conta(ticket[linha])
+        except:
+            pass
+        ticket, colunas = carrega_ticket()
+        window['grdTickets'].update(values=ticket)   
+             
 window.close()

@@ -9,9 +9,15 @@ def fechar_conta(ticket):
     
     codigo = str(ticket[0]).zfill(6)
     entrada = datetime.strptime( ticket[1],'%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y %H:%M:%S')
-    saida = datetime.strptime( ticket[2],'%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y %H:%M:%S') if ticket[2] != '' else datetime.now().strftime('%d/%m/%Y %H:%M:%S') 
+    agora = datetime.now().replace(microsecond=0)
+    saida = datetime.strptime( ticket[2],'%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y %H:%M:%S') if ticket[2] != '' else agora.strftime('%d/%m/%Y %H:%M:%S') 
     tempo = tb.calcula_tempo(entrada, saida)
-    pagar = f"R$ {tb.calcular_valor_pagar(tempo):,.2f}"
+    valor = tb.calcular_valor_pagar(tempo)
+    pagar = f"R$ {valor:,.2f}"
+    pago = ticket[8]
+    
+    if pago == 'Sim':
+        sg.popup(f'O ticket {codigo} já foi pago.')
     
     coluna_esqueda = [
         [sg.Text(f'Ticket:')],
@@ -19,7 +25,7 @@ def fechar_conta(ticket):
         [sg.Text(f'Hora da Saída:')],
         [sg.Text(f'Tempo total em minutos:')],
         [sg.Text(f'Total a pagar:')],
-        [sg.Button('Pagar')]
+        [sg.Button('Pagar', disabled=False if pago == 'Não' else True)]
     ]
     
     coluna_direita =[
@@ -41,4 +47,12 @@ def fechar_conta(ticket):
         events, values = window.read()
         if events in (sg.WIN_CLOSED, 'Sair'):
             break
+        
+        if events == 'Pagar':
+            try:
+                tb.pagar(ticket[0], ticket[2] if ticket[2] != '' else agora, tempo, valor)
+                sg.popup('Ticket pago')
+            except Exception as ex:
+                sg.popup_error(ex)          
+        
     window.close()
