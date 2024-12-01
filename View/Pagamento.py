@@ -52,6 +52,7 @@ def fechar_conta(ticket):
             try:
                 tb.pagar(ticket[0], ticket[2] if ticket[2] != '' else agora, tempo, valor)
                 sg.popup('Ticket pago')
+                break
             except Exception as ex:
                 sg.popup_error(ex)          
         
