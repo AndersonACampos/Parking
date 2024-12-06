@@ -1,0 +1,37 @@
+ScreenManager:
+    MainScreen:
+    SecondScreen:
+
+<MainScreen>
+    name: "main"
+    FloatLayout:    
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDTopAppBar:
+                title: "Parking"
+                left_action_items: [["menu", lambda x: app.callback(x)]]
+                right_action_items: [["dots-vertical", lambda x: app.callback(x)]]
+            ScrollView:
+                MDList:
+                    id: my_list
+        MDFloatingActionButton:
+            icon:"plus"
+            md_bg_color: app.theme_cls.primary_color
+            icon_color: 1, 1, 1, 1  # Cor do ícone (preto)
+            size_hint: None, None
+            size: "56dp", "56dp"
+            pos_hint: {"x": 0.8, "y": 0.02}
+            on_release: app.change_screen()
+
+<SecondScreen>
+    name: "second"
+    FloatLayout:    
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDTopAppBar:
+                title: "Novo Ticket"
+                anchor_title: "left"
+                left_action_items: [["arrow-left", lambda x: app.change_screen_back()]]
+            MDLabel:
+                text: "Content"
+                halign: "center"
